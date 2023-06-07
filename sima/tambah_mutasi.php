@@ -1,0 +1,2 @@
+<!-- INSERT INTO `tb_mutasi` (`kode_mutasi`, `tanggal`, `kode_barang`, `lokasi awal`, `spesifikasi`, `nama_gambar`, `lokasi_akhir`, `id_user`, `quality_control`) 
+VALUES (NULL, '2023-06-07', '2', 'Lokasi awal aset', 'Aset harus dimutasi ke tempat lain', 'coba_mutasi.jpg', 'Lokasi akhir aset', '2', 'Ulum'); -->
