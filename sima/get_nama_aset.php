@@ -18,11 +18,7 @@ if ($result->num_rows > 0) {
         );
         array_push($data, $barang);
     }
-    $response = array(
-        'success'   => true,
-        'message'   => 'Berhasil mengambil kode dan nama aset',
-        'data' => $data
-    );
+    $response = $data;
     echo json_encode($response);
 } else {
     echo json_encode(array(
