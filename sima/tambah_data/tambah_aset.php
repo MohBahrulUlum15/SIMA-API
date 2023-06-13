@@ -1,12 +1,13 @@
 <?php
 
-include('../config.php');
+include('../../config.php');
 
 header('Content-Type:application/json;charset=UTF-8');
 
+$kode_barang           = $_POST['kode_barang'];
 $nama_barang           = $_POST['nama_barang'];
-$merk           = $_POST['merk'];
-$harga          = $_POST['harga'];
+$merk                   = $_POST['merk'];
+$harga                  = $_POST['harga'];
 $jangka_penggunaan         = $_POST['jangka_penggunaan'];
 $tanggal_masuk          = $_POST['tanggal_masuk'];
 $penanggung_jawab        = $_POST['penanggung_jawab'];
@@ -14,7 +15,7 @@ $kondisi                  = $_POST['kondisi'];
 $nama_gambar           = $_POST['nama_gambar'];
 
 if (
-    $nama_barang == "" || $merk == "" || $harga == ""
+    $kode_barang=="" || $nama_barang == "" || $merk == "" || $harga == ""
     || $jangka_penggunaan == "" || $tanggal_masuk == "" || $penanggung_jawab == ""
     || $kondisi == "" || $nama_gambar == ""
 ) {
@@ -24,8 +25,8 @@ if (
     ));
 } else {
     $sql = "INSERT INTO tb_aset 
-    (nama_barang, merk, harga, jangka_penggunaan, tanggal_masuk, penanggung_jawab, kondisi, nama_gambar) VALUES 
-    ('$nama_barang', '$merk', '$harga', '$jangka_penggunaan', '$tanggal_masuk', '$penanggung_jawab', '$kondisi', '$nama_gambar')";
+    (kode_barang, nama_barang, merk, harga, jangka_penggunaan, tanggal_masuk, penanggung_jawab, kondisi, nama_gambar) VALUES 
+    ('$kode_barang', '$nama_barang', '$merk', '$harga', '$jangka_penggunaan', '$tanggal_masuk', '$penanggung_jawab', '$kondisi', '$nama_gambar')";
 
     $result = $conn->query($sql);
 
@@ -34,6 +35,7 @@ if (
             'message'   => 'Berhasil tambah data',
             'success'   => true,
             'data'      => array(
+                'kode_barang' => $kode_barang,
                 'nama_barang' => $nama_barang,
                 'merk' =>  $merk,
                 'harga' => $harga,
