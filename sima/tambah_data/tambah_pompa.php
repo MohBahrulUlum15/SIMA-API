@@ -20,8 +20,8 @@ if (
     ));
 } else {
     $sql = "INSERT INTO tb_spesifikasi_pompa 
-    (kode_barang, head_pompa, debit_pompa, id_user, tanggal, tanggal) VALUES 
-    ('$kode_barang', '$head_pompa', '$debit_pompa', '$id_user', '$tanggal', '$tanggal')";
+    (kode_barang, head_pompa, debit_pompa, id_user, jenis_pompa, tanggal) VALUES 
+    ('$kode_barang', '$head_pompa', '$debit_pompa', '$id_user', '$jenis_pompa', '$tanggal')";
 
     $result = $conn->query($sql);
 
@@ -34,7 +34,7 @@ if (
                 'head_pompa' => $head_pompa,
                 'debit_pompa' => $debit_pompa,
                 'id_user' => $id_user,
-                'tanggal' => $tanggal,
+                'jenis_pompa' => $jenis_pompa,
                 'tanggal' => $tanggal,
             )
         ));
