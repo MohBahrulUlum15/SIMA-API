@@ -5,7 +5,7 @@ include('../../config.php');
 header('Content-Type:application/json;charset=UTF-8');
 
 // Memeriksa kecocokan data dengan database
-$sql = "SELECT tb_aset.kode_barang, tb_aset.nama_barang, tb_mutasi.lokasi_awal, tb_mutasi.lokasi_akhir, tb_mutasi.spesifikasi, 
+$sql = "SELECT tb_aset.kode_barang, tb_aset.nama_barang, tb_mutasi.tanggal, tb_mutasi.lokasi_awal, tb_mutasi.lokasi_akhir, tb_mutasi.spesifikasi, 
 tb_mutasi.nama_gambar, tb_mutasi.quality_control, tb_user.nama_lengkap 
 FROM tb_mutasi 
 JOIN tb_aset ON tb_mutasi.kode_barang = tb_aset.kode_barang 

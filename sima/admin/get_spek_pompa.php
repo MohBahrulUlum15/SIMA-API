@@ -4,12 +4,14 @@ include('../../config.php');
 
 header('Content-Type:application/json;charset=UTF-8');
 
+$jenis_pompa = $_GET['jenis_pompa'];
+
 // Memeriksa kecocokan data dengan database
 $sql = "SELECT tb_aset.kode_barang, tb_aset.nama_barang, tb_spesifikasi_pompa.head_pompa, tb_spesifikasi_pompa.debit_pompa, tb_spesifikasi_pompa.tanggal, tb_user.nama_lengkap 
 FROM tb_spesifikasi_pompa
 JOIN tb_aset ON tb_spesifikasi_pompa.kode_barang = tb_aset.kode_barang
 JOIN tb_user ON tb_spesifikasi_pompa.id_user = tb_user.id_user
-WHERE tb_spesifikasi_pompa.jenis_pompa = 'pompa dosing';";
+WHERE tb_spesifikasi_pompa.jenis_pompa = '$jenis_pompa';";
 $result = $conn->query($sql);
 
 $data = array();
