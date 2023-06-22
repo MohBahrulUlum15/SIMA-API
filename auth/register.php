@@ -17,6 +17,8 @@ $jabatan                = $_POST['jabatan'];
 $departemen             = $_POST['departemen'];
 $username               = $_POST['username'];
 $password               = md5($_POST['password']);
+$validasi               = $_POST['validasi'];
+
 
 $sql_check = "SELECT * FROM tb_user WHERE username = '$username'";
 
@@ -39,8 +41,8 @@ if (
     ));
 } else {
     $sql = "INSERT INTO tb_user 
-    (nama_lengkap, tempat_lahir, tanggal_lahir, alamat_lengkap, jenis_kelamin, kewarganegaraan, agama, no_handphone, pendidikan_terakhir, jabatan, departemen, username, password) VALUES 
-    ('$nama_lengkap', '$tempat_lahir', '$tanggal_lahir', '$alamat_lengkap', '$jenis_kelamin', '$kewarganegaraan', '$agama', '$no_handphone', '$pendidikan_terakhir', '$jabatan', '$departemen', '$username', '$password')";
+    (nama_lengkap, tempat_lahir, tanggal_lahir, alamat_lengkap, jenis_kelamin, kewarganegaraan, agama, no_handphone, pendidikan_terakhir, jabatan, departemen, username, password, validasi) VALUES 
+    ('$nama_lengkap', '$tempat_lahir', '$tanggal_lahir', '$alamat_lengkap', '$jenis_kelamin', '$kewarganegaraan', '$agama', '$no_handphone', '$pendidikan_terakhir', '$jabatan', '$departemen', '$username', '$password', '$validasi')";
 
     $result = $conn->query($sql);
 
@@ -61,7 +63,8 @@ if (
                 'jabatan' => $jabatan,
                 'departemen' => $departemen,
                 'username' => $username,
-                'password' => $password
+                'password' => $password,
+                'validasi' => $validasi
             )
         ));
     } else {

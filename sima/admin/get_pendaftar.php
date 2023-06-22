@@ -5,7 +5,7 @@ include('../../config.php');
 header('Content-Type:application/json;charset=UTF-8');
 
 // Memeriksa kecocokan data dengan database
-$sql = "SELECT * FROM `tb_user` WHERE jabatan = 'karyawan' AND validasi = 'diterima';";
+$sql = "SELECT * FROM `tb_user` WHERE validasi = 'diproses';";
 $result = $conn->query($sql);
 
 $data = array();
