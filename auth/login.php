@@ -12,7 +12,7 @@ $result_chek_username = $conn->query($sql_check_username);
 if ($result_chek_username->num_rows > 0) {
 
     // Memeriksa kecocokan data dengan database
-    $sql = "SELECT * FROM tb_user WHERE username = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM tb_user WHERE username = '$username' AND password = '$password' AND validasi = 'diterima'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
