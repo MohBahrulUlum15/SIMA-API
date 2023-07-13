@@ -15,7 +15,7 @@ $kondisi                  = $_POST['kondisi'];
 $nama_gambar           = $_POST['nama_gambar'];
 
 if (
-    $kode_barang=="" || $nama_barang == "" || $merk == "" || $harga == ""
+    $kode_barang == "" || $nama_barang == "" || $merk == "" || $harga == ""
     || $jangka_penggunaan == "" || $tanggal_masuk == "" || $penanggung_jawab == ""
     || $kondisi == "" || $nama_gambar == ""
 ) {
