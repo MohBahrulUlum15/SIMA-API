@@ -8,7 +8,17 @@ $tanggal            = $_POST['tanggal'];
 $id_user            = $_POST['id_user'];
 $uraian_kegiatan    = $_POST['uraian_kegiatan'];
 $daya_listrik       = $_POST['daya_listrik'];
-$nama_gambar        = $_POST['nama_gambar'];
+// $nama_gambar        = $_POST['nama_gambar'];
+
+$location = $_FILES['nama_gambar']['tmp_name'];
+$nameImage = strtolower($_FILES['nama_gambar']['name']);
+$uploadTo = "../../uploads/produksi/";
+
+$randomName = uniqid();
+$randomName .= "-";
+$randomName .= $nameImage;
+
+move_uploaded_file($location, $uploadTo . $randomName);
 
 $sql_check = "SELECT * FROM tb_unit_produksi WHERE id_user='$id_user' AND tanggal='$tanggal'";
 
@@ -16,7 +26,7 @@ $result_check = $conn->query($sql_check);
 
 if (
     $tanggal == "" || $daya_listrik == "" || $id_user == ""
-    || $uraian_kegiatan == "" || $nama_gambar == ""
+    || $uraian_kegiatan == ""
 ) {
     echo json_encode(array(
         'success' => false,
@@ -35,7 +45,7 @@ if (
 } else {
     $sql = "INSERT INTO tb_unit_produksi 
     (tanggal, daya_listrik, id_user, uraian_kegiatan, nama_gambar) VALUES 
-    ('$tanggal', '$daya_listrik', '$id_user', '$uraian_kegiatan', '$nama_gambar')";
+    ('$tanggal', '$daya_listrik', '$id_user', '$uraian_kegiatan', '$randomName')";
 
     $result = $conn->query($sql);
 
@@ -48,7 +58,7 @@ if (
                 'daya_listrik' =>  $daya_listrik,
                 'id_user' => $id_user,
                 'uraian_kegiatan' => $uraian_kegiatan,
-                'nama_gambar' => $nama_gambar,
+                'nama_gambar' => $randomName,
             )
         ));
     } else {

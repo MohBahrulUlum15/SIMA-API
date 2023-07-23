@@ -12,21 +12,49 @@ $jangka_penggunaan         = $_POST['jangka_penggunaan'];
 $tanggal_masuk          = $_POST['tanggal_masuk'];
 $penanggung_jawab        = $_POST['penanggung_jawab'];
 $kondisi                  = $_POST['kondisi'];
-$nama_gambar           = $_POST['nama_gambar'];
+
+// $nama_gambar           = $_POST['nama_gambar'];
+
+$location = $_FILES['nama_gambar']['tmp_name'];
+$nameImage = strtolower($_FILES['nama_gambar']['name']);
+$uploadTo = "../../uploads/aset/";
+
+$randomName = uniqid();
+$randomName .= "-";
+$randomName .= $nameImage;
+
+move_uploaded_file($location, $uploadTo . $randomName);
 
 if (
     $kode_barang == "" || $nama_barang == "" || $merk == "" || $harga == ""
     || $jangka_penggunaan == "" || $tanggal_masuk == "" || $penanggung_jawab == ""
-    || $kondisi == "" || $nama_gambar == ""
+    || $kondisi == ""
 ) {
     echo json_encode(array(
         'success' => false,
         "message" => "Gagal! Field tidak diisi!"
     ));
 } else {
-    $sql = "INSERT INTO tb_aset
-    (kode_barang, nama_barang, merk, harga, jangka_penggunaan, tanggal_masuk, penanggung_jawab, kondisi, nama_gambar) VALUES 
-    ('$kode_barang', '$nama_barang', '$merk', '$harga', '$jangka_penggunaan', '$tanggal_masuk', '$penanggung_jawab', '$kondisi', '$nama_gambar')";
+    $sql = "INSERT INTO tb_aset (
+        kode_barang, 
+        nama_barang, 
+        merk, harga, 
+        jangka_penggunaan, 
+        tanggal_masuk, 
+        penanggung_jawab, 
+        kondisi, 
+        nama_gambar
+    ) 
+    VALUES (
+        '$kode_barang',
+        '$nama_barang', 
+        '$merk', 
+        '$harga', 
+        '$jangka_penggunaan', 
+        '$tanggal_masuk', 
+        '$penanggung_jawab', 
+        '$kondisi', 
+        '$randomName')";
 
     $result = $conn->query($sql);
 
@@ -43,7 +71,7 @@ if (
                 'tanggal_masuk' => $tanggal_masuk,
                 'penanggung_jawab' => $penanggung_jawab,
                 'kondisi' => $kondisi,
-                'nama_gambar' => $nama_gambar
+                'nama_gambar' => $randomName
             )
         ));
     } else {

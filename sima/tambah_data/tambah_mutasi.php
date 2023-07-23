@@ -13,9 +13,20 @@ $lokasi_akhir       = $_POST['lokasi_akhir'];
 $id_user            = $_POST['id_user'];
 $quality_control    = $_POST['quality_control'];
 
+
+// $location = $_FILES['nama_gambar']['tmp_name'];
+// $nameImage = strtolower($_FILES['nama_gambar']['name']);
+// $uploadTo = "../../uploads/mutasi/";
+
+// $randomName = uniqid();
+// $randomName .= "-";
+// $randomName .= $nameImage;
+
+// move_uploaded_file($location, $uploadTo . $randomName);
+
 if (
     $tanggal == "" || $kode_barang == "" || $lokasi_awal == ""
-    || $spesifikasi == "" || $nama_gambar == "" || $lokasi_akhir == ""
+    || $spesifikasi == "" || $lokasi_akhir == ""
     || $id_user == "" || $quality_control == ""
 ) {
     echo json_encode(array(

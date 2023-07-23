@@ -8,11 +8,21 @@ $tanggal            = $_POST['tanggal'];
 $kode_barang        = $_POST['kode_barang'];
 $id_user            = $_POST['id_user'];
 $uraian_kegiatan    = $_POST['uraian_kegiatan'];
-$nama_gambar        = $_POST['nama_gambar'];
+// $nama_gambar        = $_POST['nama_gambar'];
+
+$location = $_FILES['nama_gambar']['tmp_name'];
+$nameImage = strtolower($_FILES['nama_gambar']['name']);
+$uploadTo = "../../uploads/perawatan/";
+
+$randomName = uniqid();
+$randomName .= "-";
+$randomName .= $nameImage;
+
+move_uploaded_file($location, $uploadTo . $randomName);
 
 if (
     $tanggal == "" || $kode_barang == "" || $id_user == ""
-    || $uraian_kegiatan == "" || $nama_gambar == ""
+    || $uraian_kegiatan == ""
 ) {
     echo json_encode(array(
         'success' => false,
@@ -21,7 +31,7 @@ if (
 } else {
     $sql = "INSERT INTO tb_perawatan 
     (tanggal, kode_barang, id_user, uraian_kegiatan, nama_gambar) VALUES 
-    ('$tanggal', '$kode_barang', '$id_user', '$uraian_kegiatan', '$nama_gambar')";
+    ('$tanggal', '$kode_barang', '$id_user', '$uraian_kegiatan', '$randomName')";
 
     $result = $conn->query($sql);
 
@@ -34,7 +44,7 @@ if (
                 'kode_barang' =>  $kode_barang,
                 'id_user' => $id_user,
                 'uraian_kegiatan' => $uraian_kegiatan,
-                'nama_gambar' => $nama_gambar,
+                'nama_gambar' => $randomName,
             )
         ));
     } else {
